@@ -4,15 +4,27 @@ import { relations } from "drizzle-orm";
 export const roleEnum = pgEnum("role", ["admin", "user", "userAdminRoleAuth"]);
 
 // Users Table
-export const usersTable = pgTable("users", {
-  user_id: serial("user_id").primaryKey(),
-  full_name: text("full_name"),
-  email: varchar("email", { length: 255 }).unique(),
-  contact_phone: text("contact_phone"),
-  address: text("address"),
-  role: roleEnum("role").default("user"),
-  created_at: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
-  updated_at: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
+// export const usersTable = pgTable("users", {
+//   user_id: varchar('id').primaryKey(),
+//   full_name: text("full_name"),
+//   email: varchar("email", { length: 255 }).unique(),
+//   contact_phone: text("contact_phone"),
+//   address: text("address"),
+//   role: roleEnum("role").default("user"),
+//   created_at: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
+//   updated_at: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
+// });
+
+
+export const usersTable = pgTable('users', {
+  user_id: text('user_id').primaryKey(),
+  email: text('email'),
+  firstName: text('firstName'),
+  lastName: text('lastName'),
+  full_name: text('full_name'),
+  imageUrl: text('imageUrl'),
+  createdAt: timestamp('createdAt'),
+  updatedAt: timestamp('updatedAt'),
 });
 // Authentication Table
 export const AuthOnUsersTable = pgTable("auth_on_users", {
